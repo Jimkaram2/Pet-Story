@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pick a Pet - Interactive Story</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        color: #333;
+        padding: 20px;
+        margin: 0;
+      }
+
+      #story {
+        margin: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+        margin: 10px 0;
+      }
+
+      .choice-button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .choice-button:hover {
+        background-color: #45a049;
+      }
+
+      .name-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .name-form input[type="text"] {
+        width: 200px;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      .pet-image {
+        max-width: 300px;
+        height: auto;
+        margin: 20px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .name-form .pet-image {
+        display: block;
+        margin: 20px auto;
+        max-width: 300px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Pick a Pet - Interactive Story</h1>
+    <div id="story">
+      <img
+        src="https://media.istockphoto.com/id/1197037573/vector/pet-store-illustration.jpg?s=612x612&w=0&k=20&c=YS-q7g1H_t21ZtAsnD3LU29jyiyTaasKOVfdYCoUdKg="
+      />
+      <p>
+        Welcome to the interactive story! You are about to embark on a journey
+        to pick your perfect pet. Let's begin!
+      </p>
+      <p>
+        You find yourself in a pet store. There are two main sections: one for
+        cats and one for dogs.
+      </p>
+      <p>Where would you like to go?</p>
+      <button class="choice-button" id="cats-button">Cats</button>
+      <button class="choice-button" id="dogs-button">Dogs</button>
+    </div>
+
+    <script>
+      let petBreed;
+      let imagePath;
+
+      function renderCatSection() {
+        document.getElementById("story").innerHTML = `
+        <p>You enter the cat section and see various breeds of cats.</p>
+        <p>Which breed catches your attention?</p>
+        <button class="choice-button" id="persian-button">Persian Cat</button>
+        <button class="choice-button" id="siamese-button">Siamese Cat</button>
+      `;
+      }
+
+      function renderDogSection() {
+        document.getElementById("story").innerHTML = `
+        <p>You enter the dog section and see different breeds of dogs.</p>
+        <p>Which breed catches your attention?</p>
+        <button class="choice-button" id="labrador-button">Labrador Retriever</button>
+        <button class="choice-button" id="bulldog-button">Bulldog</button>
+      `;
+      }
+
+      function renderNameForm(petType, breed, image) {
+        petBreed = breed;
+        imagePath = image;
+        document.getElementById("story").innerHTML = `
+        <p>You choose the ${petBreed}. It's a ${petType} breed.</p>
+        <div class="name-form">
+          <input type="text" id="pet-name-input" placeholder="Enter a name">
+          <button class="choice-button" id="name-submit-button">Submit</button>
+          <img class="pet-image" src="${imagePath}" alt="${petBreed}">
+        </div>
+      `;
+      }
+
+      document
+        .getElementById("cats-button")
+        .addEventListener("click", function () {
+          renderCatSection();
+          document
+            .getElementById("persian-button")
+            .addEventListener("click", function () {
+              const petType = "Persian";
+              const breed = "Persian Cat";
+              const image =
+                "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRfoPtCDzx_nbujcmT650B_pEgQdl90N21yvqmiFBtriLtRzB6ADEtlF6MzTcbD5aGeMzi_-0vTfEUz0rE";
+              renderNameForm(petType, breed, image);
+            });
+          document
+            .getElementById("siamese-button")
+            .addEventListener("click", function () {
+              const petType = "Siamese";
+              const breed = "Siamese Cat";
+              const image =
+                "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQgwWTl6RtTmc4fezxTXkqWRqHFee0_4pJYBdz8eLjv6JYnLuRpo_NlsyL5UZe-uw1NsbLlDaykFowkQ2o";
+              renderNameForm(petType, breed, image);
+            });
+        });
+
+      document
+        .getElementById("dogs-button")
+        .addEventListener("click", function () {
+          renderDogSection();
+          document
+            .getElementById("labrador-button")
+            .addEventListener("click", function () {
+              const petType = "Labrador Retriever";
+              const breed = "Labrador Retriever";
+              const image =
+                "https://cdn.britannica.com/82/232782-050-8062ACFA/Black-labrador-retriever-dog.jpg";
+              renderNameForm(petType, breed, image);
+            });
+          document
+            .getElementById("bulldog-button")
+            .addEventListener("click", function () {
+              const petType = "Bulldog";
+              const breed = "Bulldog";
+              const image =
+                "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcS-wkdokbCCcNAyz2jYQuYJBaXSzSuvQdYWLgr8ukQMirHLZEL51W4U3GsQVh_X1hmRVVRsWRXkVMIB1rs";
+              renderNameForm(petType, breed, image);
+            });
+        });
+
+      document
+        .getElementById("story")
+        .addEventListener("click", function (event) {
+          if (event.target.id === "name-submit-button") {
+            const petName = document.getElementById("pet-name-input").value;
+            if (petName) {
+              document.getElementById("story").innerHTML = `
+            <p>Congratulations! You have adopted a ${petBreed} named ${petName}. Enjoy your new furry friend!</p>
+            <img class="pet-image" src="${imagePath}" alt="${petBreed}">
+          `;
+              let question = document.createElement("p");
+              question.innerText = "Did you know? " + getFunFact(petBreed);
+              document.getElementById("story").appendChild(question);
+              let yesButton = document.createElement("button");
+              yesButton.innerText = "Yes";
+              yesButton.classList.add("choice-button");
+              yesButton.id = "satisfaction-yes-button";
+              document.getElementById("story").appendChild(yesButton);
+              let noButton = document.createElement("button");
+              noButton.innerText = "No";
+              noButton.classList.add("choice-button");
+              noButton.id = "satisfaction-no-button";
+              document.getElementById("story").appendChild(noButton);
+
+              document
+                .getElementById("satisfaction-yes-button")
+                .addEventListener("click", function () {
+                  document.getElementById("story").innerHTML =
+                    "<p>Thank you for your answer. Have a great time with your new pet! (Refresh the page to play again.)</p>";
+                });
+
+              document
+                .getElementById("satisfaction-no-button")
+                .addEventListener("click", function () {
+                  document.getElementById("story").innerHTML =
+                    "<p>Well now you know. Have a great time with your new furry friend. (Refresh the page to play again.)</p>";
+                });
+            }
+          }
+        });
+
+      function getFunFact(breed) {
+        let funFact = "";
+        if (breed === "Persian Cat") {
+          funFact =
+            "Persian cats are known for their long, luxurious fur and sweet, gentle personalities.";
+        } else if (breed === "Siamese Cat") {
+          funFact =
+            "Siamese cats are highly social and known for their striking blue almond-shaped eyes.";
+        } else if (breed === "Labrador Retriever") {
+          funFact =
+            "Labrador Retrievers are friendly, outgoing, and make excellent family pets.";
+        } else if (breed === "Bulldog") {
+          funFact =
+            "Bulldogs are known for their wrinkled face, stocky build, and friendly demeanor.";
+        }
+        return funFact;
+      }
+    </script>
+  </body>
+</html>
